@@ -7,9 +7,9 @@
         "plugin:react/recommended",
         "airbnb",
         "plugin:prettier/recommended",
-        "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:import/typescript"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -25,10 +25,23 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "prettier"
+        "prettier",
+        "import"
     ],
     "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".ts",
+                ".tsx"
+            ]
+        },
         "import/resolver": {
+            "typescript": {
+                "project": [
+                    "./tsconfig.json",
+                    "./tsconfig.paths.json"
+                ]
+            },
             "node": {
                 "extensions": [
                     ".js",
@@ -55,6 +68,7 @@
         "@typescript-eslint/no-use-before-define": [
             "error"
         ],
+        "react/prop-types": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -63,6 +77,65 @@
                 "jsx": "never",
                 "ts": "never",
                 "tsx": "never"
+            }
+        ],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "sibling",
+                    "unknown"
+                ],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@constants/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@services/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@pages/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@pages/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@components/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@ui/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@interfaces/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "@styles/*",
+                        "group": "internal",
+                        "position": "after"
+                    }
+                ]
             }
         ]
     }
