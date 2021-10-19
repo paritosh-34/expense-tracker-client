@@ -82,6 +82,7 @@
         "react/require-default-props": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "no-void": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "import/order": [
             "error",
             {
