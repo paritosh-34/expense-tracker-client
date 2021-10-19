@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
+import { domain, endpoints, IEndpoint } from '@constants/apiEndpoints';
 import myStore from '@utils/myStore';
 import showToast from '@utils/showToast';
-import { domain, endpoints, IEndpoint } from '@constants/apiEndpoints';
 import { baseApiReturn } from '@interfaces/index';
 
 const loginReq = async (endpoint: IEndpoint, payload = {}) => {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import styles from '@styles/components/Loading.module.scss';
 import Logo from '@ui/Logo';
+import styles from '@styles/components/Loading.module.scss';
 
 interface LoadingProps {
   background?: boolean;

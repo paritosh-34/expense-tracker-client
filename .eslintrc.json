@@ -81,6 +81,7 @@
         ],
         "react/require-default-props": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "no-void": "off",
         "import/order": [
             "error",
             {
@@ -108,7 +109,7 @@
                         "position": "after"
                     },
                     {
-                        "pattern": "@pages/*",
+                        "pattern": "@utils/*",
                         "group": "internal",
                         "position": "after"
                     },
@@ -133,7 +134,7 @@
                         "position": "after"
                     },
                     {
-                        "pattern": "@styles/*",
+                        "pattern": "@styles/**/*.scss",
                         "group": "internal",
                         "position": "after"
                     }

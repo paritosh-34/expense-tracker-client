@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
+import { domain, IEndpoint } from '@constants/apiEndpoints';
 import showToast from '@utils/showToast';
 import myStore from '@utils/myStore';
-import { domain, IEndpoint } from '@constants/apiEndpoints';
 import { baseApiReturn } from '@interfaces/index';
 import { requestRefresh } from './authService';
 
