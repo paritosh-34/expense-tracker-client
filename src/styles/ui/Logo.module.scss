@@ -26,3 +26,9 @@
   text-shadow: 2px 1px 0px black;
   z-index: 1001;
 }
+
+@media (max-width: 800px) {
+  .loading {
+    font-size: 2em;
+  }
+}
