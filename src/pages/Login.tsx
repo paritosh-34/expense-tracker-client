@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useHistory, Link as RouterLink } from 'react-router-dom';
 import { Box } from '@mui/system';
-import { Typography, Link } from '@mui/material';
+import { Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { blueGrey, grey } from '@mui/material/colors';
@@ -113,7 +113,9 @@ const Login: FC<LoginProps> = ({ setIsAuthenticated }) => {
         <Typography variant="body2" mt={1} style={{ alignSelf: 'flex-end' }} color={blueGrey[500]}>
           Not a user?{' '}
           <RouterLink to="/signup">
-            <Link href="/signup">Signup</Link>
+            <Typography variant="body2" color="primary" style={{ display: 'inline' }}>
+              Signup
+            </Typography>
           </RouterLink>
         </Typography>
         <LoadingButton
