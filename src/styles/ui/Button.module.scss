@@ -1,0 +1,24 @@
+// ------------
+// index
+//
+// 1. btn
+// ------------
+
+// ------------
+// btn
+// ------------
+
+.btn {
+  background-color: var(--primary-orange);
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+
+  transition: transform 250ms ease;
+}
+.btn:hover {
+  transform: scale(1.1);
+}

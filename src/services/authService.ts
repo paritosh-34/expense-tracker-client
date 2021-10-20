@@ -4,6 +4,10 @@ import myStore from '@utils/myStore';
 import showToast from '@utils/showToast';
 import { baseApiReturn } from '@interfaces/index';
 
+interface ISuccessLoginResponse extends baseApiReturn {
+  accessToken: string;
+}
+
 const loginReq = async (endpoint: IEndpoint, payload = {}) => {
   const url = domain + endpoint.url;
 
@@ -20,7 +24,7 @@ const loginReq = async (endpoint: IEndpoint, payload = {}) => {
       body: JSON.stringify(payload),
     });
 
-    const toJson = (await r.json()) as baseApiReturn;
+    const toJson = (await r.json()) as ISuccessLoginResponse;
     console.log(toJson);
 
     if (!toJson.success) {
@@ -28,7 +32,7 @@ const loginReq = async (endpoint: IEndpoint, payload = {}) => {
       return false;
     }
 
-    myStore.setAccessToken(r.headers.get('x-access-token')!);
+    myStore.setAccessToken(toJson.accessToken);
 
     return toJson;
   } catch (e) {
@@ -54,14 +58,14 @@ const requestRefresh = async () => {
       },
     });
 
-    const toJson = (await r.json()) as baseApiReturn;
+    const toJson = (await r.json()) as ISuccessLoginResponse;
     console.log(toJson);
 
     if (!toJson.success) {
       return false;
     }
 
-    myStore.setAccessToken(r.headers.get('x-access-token')!);
+    myStore.setAccessToken(toJson.accessToken);
 
     return toJson;
   } catch (e) {

@@ -120,12 +120,17 @@
                         "position": "after"
                     },
                     {
+                        "pattern": "@theme/*",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
                         "pattern": "@components/*",
                         "group": "internal",
                         "position": "after"
                     },
                     {
-                        "pattern": "@ui/*",
+                        "pattern": "@ui/**/*",
                         "group": "internal",
                         "position": "after"
                     },
