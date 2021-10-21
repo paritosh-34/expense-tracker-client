@@ -15,8 +15,8 @@ const Layout = ({ children, setIsAuthenticated }: LayoutProps) => {
     const checkWidth = () => {
       const width = window.innerWidth;
 
-      if (width <= 600 && !isMobile) setIsMobile(true);
-      else if (width > 600 && isMobile) setIsMobile(false);
+      if (width <= 1000 && !isMobile) setIsMobile(true);
+      else if (width > 1000 && isMobile) setIsMobile(false);
     };
 
     checkWidth();
