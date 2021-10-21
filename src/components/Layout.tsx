@@ -31,7 +31,7 @@ const Layout = ({ children, setIsAuthenticated }: LayoutProps) => {
       <Header setIsAuthenticated={setIsAuthenticated} setOpen={setOpen} isMobile={isMobile} />
       <Sidebar open={open} setOpen={setOpen} isMobile={isMobile} />
       <Toolbar />
-      <main>{children}</main>
+      <main style={{ marginLeft: isMobile ? 0 : 240 }}>{children}</main>
     </>
   );
 };
