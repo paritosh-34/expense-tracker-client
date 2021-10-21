@@ -8,7 +8,7 @@ export interface IEndpoint {
   method: 'get' | 'post';
 }
 
-type endpointNames = 'login' | 'signup' | 'requestRefresh' | 'logout';
+type endpointNames = 'login' | 'signup' | 'requestRefresh' | 'logout' | 'create' | 'allExpenses';
 
 export const endpoints: Record<endpointNames, IEndpoint> = {
   // auth
@@ -27,5 +27,13 @@ export const endpoints: Record<endpointNames, IEndpoint> = {
   logout: {
     url: '/auth/logout',
     method: 'post',
+  },
+  create: {
+    url: '/expense/create',
+    method: 'post',
+  },
+  allExpenses: {
+    url: '/expense/all',
+    method: 'get',
   },
 };
