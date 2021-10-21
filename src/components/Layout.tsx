@@ -27,12 +27,12 @@ const Layout = ({ children, setIsAuthenticated }: LayoutProps) => {
   }, [isMobile, setIsMobile]);
 
   return (
-    <div>
+    <>
       <Header setIsAuthenticated={setIsAuthenticated} setOpen={setOpen} isMobile={isMobile} />
       <Sidebar open={open} setOpen={setOpen} isMobile={isMobile} />
       <Toolbar />
       <main>{children}</main>
-    </div>
+    </>
   );
 };
 
