@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import {
   Divider,
   Drawer,
@@ -25,9 +25,9 @@ interface SidebarProps {
 
 const drawerWidth = 240;
 
-const pages: [string, JSX.Element][] = [
-  ['Create', <CreateIcon />],
-  ['Expenses', <TimelineIcon />],
+const pages: [string, JSX.Element, string][] = [
+  ['Create', <CreateIcon />, '/create'],
+  ['Expenses', <TimelineIcon />, '/expenses'],
 ];
 
 const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
@@ -64,10 +64,12 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
           subheader={<ListSubheader component="div">Pages</ListSubheader>}
         >
           {pages.map((item) => (
-            <ListItemButton key={item[0]} selected={page === item[0]}>
-              <ListItemIcon>{item[1]}</ListItemIcon>
-              <ListItemText style={{ fontWeight: 700 }}>{item[0]}</ListItemText>
-            </ListItemButton>
+            <Link key={item[0]} to={item[2]}>
+              <ListItemButton selected={page === item[0]}>
+                <ListItemIcon>{item[1]}</ListItemIcon>
+                <ListItemText style={{ fontWeight: 700 }}>{item[0]}</ListItemText>
+              </ListItemButton>
+            </Link>
           ))}
         </List>
       </Box>
