@@ -7,7 +7,7 @@ import { requestRefresh } from './authService';
 
 const apiService = async <T extends baseApiReturn>(
   endpoint: IEndpoint,
-  payload: Record<string, string> = {},
+  payload: Record<string, unknown> = {},
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   slug: string = ''
 ): Promise<T | false> => {
@@ -21,7 +21,7 @@ const apiService = async <T extends baseApiReturn>(
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: myStore.getAccessToken(),
+        Authorization: `Bearer ${myStore.getAccessToken()}`,
       },
       body: endpoint.method === 'post' ? JSON.stringify(payload) : undefined,
     });
