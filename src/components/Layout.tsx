@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
+import { Toolbar } from '@mui/material';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
@@ -27,11 +28,10 @@ const Layout = ({ children, setIsAuthenticated }: LayoutProps) => {
 
   return (
     <div>
-      <main>
-        <Header setIsAuthenticated={setIsAuthenticated} setOpen={setOpen} isMobile={isMobile} />
-        <Sidebar open={open} setOpen={setOpen} isMobile={isMobile} />
-        {children}
-      </main>
+      <Header setIsAuthenticated={setIsAuthenticated} setOpen={setOpen} isMobile={isMobile} />
+      <Sidebar open={open} setOpen={setOpen} isMobile={isMobile} />
+      <Toolbar />
+      <main>{children}</main>
     </div>
   );
 };
