@@ -45,7 +45,7 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
         sx={{
           width: drawerWidth,
           padding: 0,
-          backgroundColor: isMobile ? grey[100] : 'white',
+          // backgroundColor: isMobile ? grey[100] : 'white',
           minHeight: '100vh',
         }}
       >
@@ -61,7 +61,11 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
         <Divider />
         <List
           style={{ marginTop: '1em' }}
-          subheader={<ListSubheader component="div">Pages</ListSubheader>}
+          subheader={
+            <ListSubheader component="span" style={{ backgroundColor: 'transparent' }}>
+              Pages
+            </ListSubheader>
+          }
         >
           {pages.map((item) => (
             <Link key={item[0]} to={item[2]}>
