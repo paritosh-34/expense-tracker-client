@@ -54,7 +54,8 @@ const Login: FC<LoginProps> = ({ setIsAuthenticated }) => {
     setValues({ ...values, [prop]: e.target.value });
   };
 
-  const handleClick = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
 
     const r = await loginReq(endpoints.login, {
@@ -81,6 +82,7 @@ const Login: FC<LoginProps> = ({ setIsAuthenticated }) => {
       }}
     >
       <Box
+        component="form"
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -92,6 +94,7 @@ const Login: FC<LoginProps> = ({ setIsAuthenticated }) => {
         }}
         px={3}
         py={4}
+        onSubmit={handleSubmit}
       >
         <Typography variant="h5" textAlign="center" fontWeight={700} fontFamily="Pattaya">
           Login
@@ -119,7 +122,7 @@ const Login: FC<LoginProps> = ({ setIsAuthenticated }) => {
           </RouterLink>
         </Typography>
         <LoadingButton
-          onClick={handleClick}
+          type="submit"
           endIcon={<SendIcon />}
           loading={loading}
           loadingPosition="end"
