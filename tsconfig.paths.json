@@ -11,6 +11,9 @@
       "@interfaces/*": [
         "./interfaces/*"
       ],
+      "@interfaces/": [
+        "./interfaces/index"
+      ],
       "@pages/*": [
         "./pages/*"
       ],

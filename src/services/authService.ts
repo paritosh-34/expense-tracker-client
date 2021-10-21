@@ -2,7 +2,7 @@
 import { domain, endpoints, IEndpoint } from '@constants/apiEndpoints';
 import myStore from '@utils/myStore';
 import showToast from '@utils/showToast';
-import { baseApiReturn } from '@interfaces/index';
+import { baseApiReturn } from '@interfaces/';
 
 interface ISuccessLoginResponse extends baseApiReturn {
   accessToken: string;

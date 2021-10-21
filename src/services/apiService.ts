@@ -2,7 +2,7 @@
 import { domain, IEndpoint } from '@constants/apiEndpoints';
 import showToast from '@utils/showToast';
 import myStore from '@utils/myStore';
-import { baseApiReturn } from '@interfaces/index';
+import { baseApiReturn } from '@interfaces/';
 import { requestRefresh } from './authService';
 
 const apiService = async <T extends baseApiReturn>(

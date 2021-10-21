@@ -135,6 +135,11 @@
                         "position": "after"
                     },
                     {
+                        "pattern": "@interfaces/",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
                         "pattern": "@interfaces/*",
                         "group": "internal",
                         "position": "after"
