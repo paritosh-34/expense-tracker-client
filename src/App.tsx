@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, useLocation, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { AppProvider } from '@store/context';
 import { requestRefresh } from '@services/authService';
 import Login from '@pages/Login';
 import Signup from '@pages/Signup';
 import Expenses from '@pages/Expenses';
 import Create from '@pages/Create';
+import MyThemeProvider from '@theme/MyThemeProvider';
 import Loading from '@components/Loading';
 import PrivateRoute from '@components/PrivateRoute';
 
@@ -33,46 +35,48 @@ const App = () => {
   if (isLoading) return <Loading background />;
 
   return (
-    <>
-      <Switch>
-        <Redirect from="/" to="/login" exact />
-        <Route path="/login">
-          {isAuthenticated ? (
-            <Redirect from="/login" to="/expenses" />
-          ) : (
-            <Login setIsAuthenticated={setIsAuthenticated} />
-          )}
-        </Route>
-        <Route path="/signup">
-          {isAuthenticated ? (
-            <Redirect from="/signup" to="/expenses" />
-          ) : (
-            <Signup setIsAuthenticated={setIsAuthenticated} />
-          )}
-        </Route>
-        <Route path="/expenses">
-          <PrivateRoute isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
-            <Expenses />
-          </PrivateRoute>
-        </Route>
-        <Route path="/create">
-          <PrivateRoute isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
-            <Create />
-          </PrivateRoute>
-        </Route>
-      </Switch>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </>
+    <AppProvider>
+      <MyThemeProvider>
+        <Switch>
+          <Redirect from="/" to="/login" exact />
+          <Route path="/login">
+            {isAuthenticated ? (
+              <Redirect from="/login" to="/expenses" />
+            ) : (
+              <Login setIsAuthenticated={setIsAuthenticated} />
+            )}
+          </Route>
+          <Route path="/signup">
+            {isAuthenticated ? (
+              <Redirect from="/signup" to="/expenses" />
+            ) : (
+              <Signup setIsAuthenticated={setIsAuthenticated} />
+            )}
+          </Route>
+          <Route path="/expenses">
+            <PrivateRoute isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
+              <Expenses />
+            </PrivateRoute>
+          </Route>
+          <Route path="/create">
+            <PrivateRoute isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}>
+              <Create />
+            </PrivateRoute>
+          </Route>
+        </Switch>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </MyThemeProvider>
+    </AppProvider>
   );
 };
 

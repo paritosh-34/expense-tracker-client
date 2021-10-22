@@ -1,10 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { grey } from '@mui/material/colors';
+import { AppContext } from '@store/context';
 import { endpoints } from '@constants/apiEndpoints';
 import states from '@constants/states';
 import apiService from '@services/apiService';
@@ -23,6 +24,7 @@ interface State {
 }
 
 const Create: FC = () => {
+  const { state } = useContext(AppContext);
   const history = useHistory();
 
   const [loading, setLoading] = useState(false);
@@ -83,7 +85,13 @@ const Create: FC = () => {
         py={4}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h5" textAlign="center" fontWeight={700} fontFamily="Pattaya">
+        <Typography
+          color={state.isDarkMode ? 'white' : 'black'}
+          variant="h5"
+          textAlign="center"
+          fontWeight={700}
+          fontFamily="Pattaya"
+        >
           Create
         </Typography>
         <Logo style={{ color: grey[500], fontSize: '1.2em', margin: '0em 0em 2em' }} />

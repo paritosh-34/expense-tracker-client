@@ -83,6 +83,10 @@
         "@typescript-eslint/no-non-null-assertion": "off",
         "no-void": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": [
+            "error"
+        ],
         "import/order": [
             "error",
             {
@@ -98,6 +102,11 @@
                         "pattern": "react",
                         "group": "external",
                         "position": "before"
+                    },
+                    {
+                        "pattern": "@store/*",
+                        "group": "internal",
+                        "position": "after"
                     },
                     {
                         "pattern": "@hooks/*",

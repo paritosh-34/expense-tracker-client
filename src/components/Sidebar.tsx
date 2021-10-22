@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   Divider,
@@ -10,12 +10,14 @@ import {
   Box,
   ListItemButton,
   ListSubheader,
+  ListItem,
 } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 import TimelineIcon from '@mui/icons-material/Timeline';
-import { grey } from '@mui/material/colors';
+import { AppContext } from '@store/context';
 import capitalize from '@utils/capitalize';
 import Logo from '@ui/Logo';
+import MuiSwitch from '@ui/Switch/MuiSwitch';
 
 interface SidebarProps {
   open: boolean;
@@ -31,8 +33,13 @@ const pages: [string, JSX.Element, string][] = [
 ];
 
 const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
+  const { state, dispatch } = useContext(AppContext);
+
   const location = useLocation();
   const page = capitalize(location.pathname.replace('/', ''));
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch({ type: 'toggleTheme', value: e.target.checked });
 
   return (
     <Drawer
@@ -54,8 +61,8 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
             style={{
               fontSize: '1.5em',
               padding: '2em 0em',
-              textShadow: `2px 2px 0px ${grey[400]}`,
             }}
+            greyShadow
           />
         </Toolbar>
         <Divider />
@@ -75,6 +82,18 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
               </ListItemButton>
             </Link>
           ))}
+        </List>
+        <List
+          style={{ marginTop: '1em' }}
+          subheader={
+            <ListSubheader component="span" style={{ backgroundColor: 'transparent' }}>
+              Theme
+            </ListSubheader>
+          }
+        >
+          <ListItem>
+            <MuiSwitch label="Dark Mode" checked={state.isDarkMode} onChange={handleChange} />
+          </ListItem>
         </List>
       </Box>
     </Drawer>

@@ -3,6 +3,8 @@
 //
 // 1. logo
 // 2. loading
+// 3. shadow
+// 4. dark
 // ------------
 
 // ------------
@@ -31,4 +33,21 @@
   .loading {
     font-size: 2em;
   }
+}
+
+// ------------
+// shadow
+// ------------
+
+.greyShadow {
+  text-shadow: rgb(189 189 189) 2px 2px 0px;
+}
+
+// ------------
+// dark
+// ------------
+
+.dark {
+  color: white;
+  text-shadow: none;
 }
