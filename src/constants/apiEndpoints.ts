@@ -1,6 +1,6 @@
 export const domain =
   process.env.NODE_ENV === 'production'
-    ? 'https://api-stockman.herokuapp.com'
+    ? 'https://sayy-expensetracker.herokuapp.com'
     : 'http://127.0.0.1:5000';
 
 export interface IEndpoint {
