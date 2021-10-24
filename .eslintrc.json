@@ -87,6 +87,7 @@
         "@typescript-eslint/no-shadow": [
             "error"
         ],
+        "no-underscore-dangle": "off",
         "import/order": [
             "error",
             {

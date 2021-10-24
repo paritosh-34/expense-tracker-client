@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Box } from '@mui/system';
-import useFetch from '@hooks/useFetch';
 import { endpoints } from '@constants/apiEndpoints';
+import apiService from '@services/apiService';
 import formatDate from '@utils/formatDate';
+import showToast from '@utils/showToast';
 import Loading from '@components/Loading';
 import MyTable from '@ui/MyTable';
+import MyModal from '@ui/MyModal';
 import { AllExpenses, IExpense } from '@interfaces/expenses';
 import { Data, HeadCell } from '@interfaces/table';
 
@@ -18,10 +20,23 @@ const getData = (data: IExpense[]): INewData[] => {
 };
 
 const Expenses: FC = () => {
-  const { data, loading } = useFetch<AllExpenses>(endpoints.allExpenses);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<INewData[]>([]);
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [open, setOpen] = useState(false);
 
-  if (!data || loading) return <Loading />;
-  const newData = getData(data.data);
+  const fetchExpenses = async () => {
+    setLoading(true);
+
+    const r = await apiService<AllExpenses>(endpoints.allExpenses);
+    if (r) setData(getData(r.data));
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    void fetchExpenses();
+  }, []);
 
   const headCells: readonly HeadCell<INewData>[] = [
     {
@@ -51,6 +66,20 @@ const Expenses: FC = () => {
     },
   ];
 
+  const handleDelete = async () => {
+    const r = await apiService(endpoints.deleteExpenses, {
+      ids: selected,
+    });
+
+    setOpen(false);
+    setSelected([]);
+    if (r) {
+      showToast(r.message);
+      void fetchExpenses();
+    }
+  };
+
+  if (loading) return <Loading />;
   return (
     <Box
       sx={{
@@ -65,8 +94,19 @@ const Expenses: FC = () => {
       <MyTable<INewData>
         tableTitle="Expenses"
         headCells={headCells}
-        rows={newData}
+        rows={data}
         initialSortOrder="name"
+        selected={selected}
+        setSelected={setSelected}
+        handleDelete={() => setOpen(true)}
+      />
+
+      <MyModal
+        open={open}
+        title="Are you sure?"
+        content="This action is irreversible"
+        handleCancel={() => setOpen(false)}
+        handleOk={() => handleDelete()}
       />
     </Box>
   );

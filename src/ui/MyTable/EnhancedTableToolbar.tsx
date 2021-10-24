@@ -7,9 +7,14 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 interface EnhancedTableToolbarProps {
   numSelected: number;
   tableTitle: string;
+  handleDelete: () => void;
 }
 
-const EnhancedTableToolbar: FC<EnhancedTableToolbarProps> = ({ numSelected, tableTitle }) => (
+const EnhancedTableToolbar: FC<EnhancedTableToolbarProps> = ({
+  numSelected,
+  tableTitle,
+  handleDelete,
+}) => (
   <Toolbar
     sx={{
       pl: { sm: 2 },
@@ -31,7 +36,7 @@ const EnhancedTableToolbar: FC<EnhancedTableToolbarProps> = ({ numSelected, tabl
     )}
     {numSelected > 0 ? (
       <Tooltip title="Delete">
-        <IconButton>
+        <IconButton onClick={handleDelete}>
           <DeleteIcon />
         </IconButton>
       </Tooltip>

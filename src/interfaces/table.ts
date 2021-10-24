@@ -2,6 +2,7 @@ export type Order = 'asc' | 'desc';
 
 export interface Data {
   name: string;
+  _id: string;
 }
 
 export interface EnhancedTableProps<T extends Data> {
