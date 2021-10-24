@@ -31,7 +31,7 @@ const App = () => {
       setIsLoading(false);
     };
     void handleTokenRefresh();
-  }, [history, location.pathname]);
+  }, []);
   if (isLoading) return <Loading background />;
 
   return (
