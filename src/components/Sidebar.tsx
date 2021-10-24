@@ -75,7 +75,7 @@ const Sidebar: FC<SidebarProps> = ({ open, setOpen, isMobile }) => {
           }
         >
           {pages.map((item) => (
-            <Link key={item[0]} to={item[2]}>
+            <Link key={item[0]} to={item[2]} onClick={() => setOpen(false)}>
               <ListItemButton selected={page === item[0]}>
                 <ListItemIcon>{item[1]}</ListItemIcon>
                 <ListItemText style={{ fontWeight: 700 }}>{item[0]}</ListItemText>
