@@ -84,11 +84,11 @@ const MyTable = <T extends Data>({
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box>
-      <Paper sx={{ mb: 2 }}>
+    <Box sx={{ width: '100%', maxWidth: 600 }}>
+      <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
         <TableContainer>
-          <Table aria-labelledby="tableTitle" size="medium">
+          <Table aria-labelledby="tableTitle" size="medium" sx={{ minWidth: 350 }}>
             <EnhancedTableHead
               headCells={headCells}
               numSelected={selected.length}
@@ -132,7 +132,7 @@ const MyTable = <T extends Data>({
                       {headCells.map((item) => {
                         return (
                           item.id !== 'name' && (
-                            <TableCell align="right">
+                            <TableCell align="left" key={item.id}>
                               {/* eslint-disable-next-line  @typescript-eslint/no-unsafe-call */}
                               {item.formatter ? item.formatter(row[item.id]) : row[item.id]}
                             </TableCell>

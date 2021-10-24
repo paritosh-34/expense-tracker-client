@@ -59,10 +59,9 @@ const Expenses: FC = () => {
         justifyContent: 'center',
       }}
       py={4}
-      mr={1}
     >
       {loading && <Loading />}
-      <div>Expenses</div>
+
       <MyTable<INewData>
         tableTitle="Expenses"
         headCells={headCells}

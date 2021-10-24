@@ -37,7 +37,7 @@ const EnhancedTableHead = <T extends Data>({
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align="left"
             padding={headCell.disablePadding}
             sortDirection={orderBy === headCell.id ? order : false}
           >
